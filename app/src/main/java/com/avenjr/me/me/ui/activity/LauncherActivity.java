@@ -8,15 +8,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.avenjr.me.me.R;
+import com.avenjr.me.me.ui.Utils.AnimationsUtil;
 import com.avenjr.me.me.ui.animation.FlipAnimation;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.avenjr.me.me.ui.UiUtil.getScreenWidthInPixel;
+import static com.avenjr.me.me.ui.Utils.UiUtil.getScreenWidthInPixel;
 
 public class LauncherActivity extends AppCompatActivity {
 
@@ -66,8 +66,12 @@ public class LauncherActivity extends AppCompatActivity {
     {
         FlipAnimation flipAnimation = new FlipAnimation(profileImageView, logo);
         profileImageView.startAnimation(flipAnimation);
-        if(profileImageView.getVisibility()==View.GONE) {
-            logo.setVisibility(View.VISIBLE);
-        }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                logo.setAnimation(AnimationsUtil.loadFadeInAnimation(getApplicationContext()));
+
+            }
+        }, 1000);
     }
 }

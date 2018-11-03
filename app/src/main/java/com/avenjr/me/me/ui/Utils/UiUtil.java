@@ -1,4 +1,4 @@
-package com.avenjr.me.me.ui;
+package com.avenjr.me.me.ui.Utils;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
