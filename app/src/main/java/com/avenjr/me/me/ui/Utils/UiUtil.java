@@ -14,4 +14,11 @@ public class UiUtil {
         windowManager.getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics.widthPixels;
     }
+
+    public static int getScreenHeightInPixel(Context context) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        WindowManager windowManager = (WindowManager) context.getSystemService(WINDOW_SERVICE);
+        windowManager.getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.heightPixels;
+    }
 }
