@@ -7,19 +7,19 @@ public class MoveAnimation {
 
     public static void moveToLeft(View view) {
         ObjectAnimator animation = ObjectAnimator.ofFloat(view, "translationX", 100f);
-        animation.setDuration(3000);
+        animation.setDuration(1000);
         animation.start();
     }
 
     public static void moveToRight(View view) {
         ObjectAnimator animation = ObjectAnimator.ofFloat(view, "translationX", -100f);
-        animation.setDuration(3000);
+        animation.setDuration(1000);
         animation.start();
     }
 
     public static void moveFromTop(View view, float value) {
         ObjectAnimator animation = ObjectAnimator.ofFloat(view, "translationY" ,value);
-        animation.setDuration(3000);
+        animation.setDuration(1000);
         animation.start();
     }
 }

@@ -1,9 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.activity.SignInActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</android.support.constraint.ConstraintLayout>
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.avenjr.me.me.viewmodel.LoginViewModel">
+        </variable>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/app_background">
+
+        <com.avenjr.me.me.ui.views.NavigationHeader
+            android:id="@+id/navigationHeader"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/header_height"
+            android:layout_alignParentTop="true">
+        </com.avenjr.me.me.ui.views.NavigationHeader>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
+
+            <RelativeLayout
+                android:layout_width="1000dp"
+                android:layout_height="330dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="50dp"
+                android:background="@drawable/sign_in_background">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <EditText
+                        android:id="@+id/signIn_et_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:drawableStart="@drawable/ic_user_black_24dp"
+                        android:drawableLeft="@drawable/ic_user_black_24dp"
+                        android:drawablePadding="5dp"
+                        android:hint="@string/enter_email"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:padding="10dp"
+                        app:addTextChangedListener="@{viewModel.idTextWatcher}" />
+
+                    <EditText
+                        android:id="@+id/signIn_et_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:drawableStart="@drawable/ic_lock_black_24dp"
+                        android:drawableLeft="@drawable/ic_lock_black_24dp"
+                        android:drawablePadding="5dp"
+                        android:hint="@string/enter_password"
+                        android:inputType="textPassword"
+                        android:padding="10dp"
+                        app:addTextChangedListener="@{viewModel.passwordTextWatcher}" />
+
+                    <TextView
+                        android:id="@+id/signIn_et_forgotPassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="20dp"
+                        android:background="@color/appBackground"
+                        android:padding="10dp"
+                        android:text="@string/forgot_password"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/signIn_btn_submit"
+                    android:layout_width="140dp"
+                    android:layout_height="40sp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="20dp"
+                    android:onClick="@{viewModel::onLoginClicked}"
+                    app:cardBackgroundColor="@color/green"
+                    app:cardCornerRadius="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/sign_in_btn_text"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </android.support.v7.widget.CardView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/logo_background"
+                    app:civ_border_color="@color/appBackgroundDark"
+                    app:civ_border_width="3dp" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true">
+
+                    <TextView
+                        android:id="@+id/logo_first_letter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="M"
+                        android:textColor="@color/white"
+                        android:textSize="50sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-10dp"
+                        android:layout_marginTop="11dp"
+                        android:layout_toEndOf="@+id/logo_first_letter"
+                        android:layout_toRightOf="@+id/logo_first_letter"
+                        android:text="E"
+                        android:textColor="@color/white"
+                        android:textSize="40sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

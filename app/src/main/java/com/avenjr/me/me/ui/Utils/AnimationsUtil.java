@@ -5,7 +5,6 @@ import android.content.Context;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 
 import com.avenjr.me.me.R;
 
@@ -65,7 +64,7 @@ public class AnimationsUtil {
         final Animation myAnim = AnimationUtils.loadAnimation(activity, R.anim.bounce);
 
         // Use bounce interpolator with amplitude 0.2 and frequency 20
-        MyBounceInterPolator interpolator = new MyBounceInterPolator(0.2, 20);
+        MyBounceInterPolator interpolator = new MyBounceInterPolator(0.1, 10);
         myAnim.setInterpolator(interpolator);
 
         view.startAnimation(myAnim);
