@@ -55,14 +55,14 @@ public class MainActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                didTapButton(view, MainActivity.this);
-//                Intent intent = new Intent(MainActivity.this, RegistrationActivity.class);
-//                startActivity(intent);
-//// Write a message to the database
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("message");
-
-                myRef.setValue("Hello, World!");
+                didTapButton(view, MainActivity.this);
+                Intent intent = new Intent(MainActivity.this, RegistrationActivity.class);
+                startActivity(intent);
+////// Write a message to the database
+//                FirebaseDatabase database = FirebaseDatabase.getInstance();
+//                DatabaseReference myRef = database.getReference("message");
+//
+//                myRef.setValue("Hello, World!");
             }
         });
     }

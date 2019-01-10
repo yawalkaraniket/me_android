@@ -4,4 +4,8 @@
     <string name="enter_password">password...</string>
     <string name="forgot_password">FORGOT PASSWORD</string>
     <string name="sign_in_btn_text">Sign-In</string>
+
+    // Fonts
+    <string name="font_hinted_Averta_Bold" translatable="false">fonts/hinted-Averta-Bold.ttf</string>
+
 </resources>
