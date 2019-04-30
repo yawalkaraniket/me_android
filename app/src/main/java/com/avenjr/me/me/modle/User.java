@@ -1,11 +1,8 @@
 package com.avenjr.me.me.modle;
 
-import android.text.TextUtils;
-import android.util.Patterns;
-
 public class User {
 
-    public String id, password;
+    public String id = "", password = "";
 
     public User() {}
 
@@ -28,10 +25,5 @@ public class User {
     public User(String id, String password) {
         this.id = id;
         this.password = password;
-    }
-
-    public boolean isValidData() {
-        return !TextUtils.isEmpty(getId()) && Patterns.EMAIL_ADDRESS.matcher(getId()).matches()
-                && getPassword().length() > 6;
     }
 }

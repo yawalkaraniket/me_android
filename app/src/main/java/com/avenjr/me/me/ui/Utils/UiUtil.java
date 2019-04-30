@@ -21,4 +21,21 @@ public class UiUtil {
         windowManager.getDefaultDisplay().getMetrics(displayMetrics);
         return displayMetrics.heightPixels;
     }
+
+    public static int getScreenWidthInDp(Context context) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        WindowManager windowManager = (WindowManager) context.getSystemService(WINDOW_SERVICE);
+        windowManager.getDefaultDisplay().getMetrics(displayMetrics);
+        int pixelDpi = displayMetrics.densityDpi;
+        return (displayMetrics.widthPixels / pixelDpi) * 160;
+    }
+
+
+    public static int getScreenHeightInDp(Context context) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        WindowManager windowManager = (WindowManager) context.getSystemService(WINDOW_SERVICE);
+        windowManager.getDefaultDisplay().getMetrics(displayMetrics);
+        int pixelDpi = displayMetrics.densityDpi;
+        return (displayMetrics.heightPixels / pixelDpi) * 160;
+    }
 }

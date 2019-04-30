@@ -4,14 +4,13 @@ import android.arch.lifecycle.ViewModel;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 
 import com.avenjr.me.me.api.ApiUtils;
 import com.avenjr.me.me.interfaces.LoginResultCallbacks;
 import com.avenjr.me.me.modle.Employee;
 import com.avenjr.me.me.modle.User;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -84,10 +83,16 @@ public class LoginViewModel extends ViewModel {
            }
        });
 
-        if(user.isValidData()) {
-            loginResultCallbacks.onSuccess("Login success!");
+        if (user.getId().isEmpty()) {
+            loginResultCallbacks.onError("User id should not be blank!");
+        } else if (user.getPassword().isEmpty()) {
+            loginResultCallbacks.onError("Password should not be blank!");
+        } else if (user.getPassword().length() < 6) {
+            loginResultCallbacks.onError("Password should be greater the 6 character!");
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(user.getId()).matches()) {
+            loginResultCallbacks.onError("Please enter correct email!");
         } else {
-            loginResultCallbacks.onError("Login failed");
+            loginResultCallbacks.onSuccess("Login success!");
         }
     }
 }

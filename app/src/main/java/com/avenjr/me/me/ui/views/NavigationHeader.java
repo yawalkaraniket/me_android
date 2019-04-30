@@ -2,7 +2,6 @@ package com.avenjr.me.me.ui.views;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -23,6 +22,9 @@ public class NavigationHeader extends RelativeLayout {
 
     @BindView(R.id.nv_back_btn)
     CardView navigationBack;
+
+    @BindView(R.id.nv_next_button)
+    CardView navigationNext;
 
     public NavigationHeader(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -47,6 +49,10 @@ public class NavigationHeader extends RelativeLayout {
         TextView headerTitle = view.findViewById(R.id.header_title);
         headerTitle.setText(title);
         ButterKnife.bind(this, view);
+
+        if (type.equals(BACK_HEADER)) {
+            navigationNext.setVisibility(GONE);
+        }
 
         addView(view);
     }

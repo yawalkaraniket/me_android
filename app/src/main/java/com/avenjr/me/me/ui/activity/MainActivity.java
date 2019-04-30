@@ -8,8 +8,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.avenjr.me.me.R;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 didTapButton(view, MainActivity.this);
-                moveFromTop(signInOptions, 520f);
+                moveFromTop(signInOptions, 600f);
             }
         });
 
@@ -56,13 +54,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 didTapButton(view, MainActivity.this);
-                Intent intent = new Intent(MainActivity.this, RegistrationActivity.class);
+                Intent intent = new Intent(MainActivity.this, OnboardingActivity.class);
                 startActivity(intent);
-////// Write a message to the database
-//                FirebaseDatabase database = FirebaseDatabase.getInstance();
-//                DatabaseReference myRef = database.getReference("message");
-//
-//                myRef.setValue("Hello, World!");
             }
         });
     }
