@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        moveToLeft(signIn);
-        moveToRight(register);
         moveFromTop(signInOptions, 350f);
 
         signIn.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        moveFromTop(signInOptions, -70);
     }
 
     @Override

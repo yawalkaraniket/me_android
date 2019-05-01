@@ -64,4 +64,10 @@ public class OnboardingActivity extends BaseActivity {
         }
         this.getSupportFragmentManager().popBackStack();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
+    }
 }
