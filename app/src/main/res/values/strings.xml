@@ -16,6 +16,7 @@
     // For the SharedPreferences
     <string name="preference_file_key">com.avenjr.me.me</string>
     <string name="email">null</string>
+    <string name="launcher_activity">true</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

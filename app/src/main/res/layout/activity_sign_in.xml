@@ -3,22 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.avenjr.me.me.viewmodel.LoginViewModel">
         </variable>
     </data>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <ScrollView
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="@drawable/app_background">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <com.avenjr.me.me.ui.views.NavigationHeader
             android:id="@+id/navigationHeader"
             android:layout_width="match_parent"
             android:layout_height="@dimen/header_height"
+            android:layout_marginBottom="20dp"
             android:layout_alignParentTop="true">
         </com.avenjr.me.me.ui.views.NavigationHeader>
 
@@ -146,4 +149,5 @@
             </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
+    </ScrollView>
 </layout>

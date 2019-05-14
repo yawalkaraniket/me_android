@@ -8,12 +8,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.avenjr.me.me.R;
+import com.avenjr.me.me.ui.Utils.UiUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.avenjr.me.me.ui.Utils.AnimationsUtil.didTapButton;
+import static com.avenjr.me.me.ui.Utils.UiUtil.getScreenWidthInPixel;
 import static com.avenjr.me.me.ui.animation.MoveAnimation.moveFromTop;
 import static com.avenjr.me.me.ui.animation.MoveAnimation.moveToLeft;
 import static com.avenjr.me.me.ui.animation.MoveAnimation.moveToRight;
@@ -38,13 +40,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        moveFromTop(signInOptions, 350f);
+
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        params.height = getScreenWidthInPixel(getApplicationContext()) / 4;
+        params.width = getScreenWidthInPixel(getApplicationContext());
+        params.topMargin = -(getScreenWidthInPixel(getApplicationContext()) / 4) * 2;
+        signInOptions.setLayoutParams(params);
+
+        moveFromTop(signInOptions, UiUtil.getScreenHeightInDp(getApplicationContext()));
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 didTapButton(view, MainActivity.this);
-                moveFromTop(signInOptions, 600f);
+                moveFromTop(signInOptions, UiUtil.getScreenHeightInDp(getApplicationContext()) - (alreadySignIn.getHeight() + 10));
             }
         });
 
@@ -78,5 +87,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         moveFromTop(signInOptions, 350f);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

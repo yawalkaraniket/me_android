@@ -26,4 +26,12 @@ public class AppPreferences {
         String defaultValue = context.getResources().getString(R.string.email);
         return sharedPref.getString(context.getString(R.string.email), defaultValue);
     }
+
+    public void setLauncherActivityPreferences(boolean launcherActivityPreferences) {
+        editor.putBoolean(context.getString(R.string.launcher_activity), launcherActivityPreferences).apply();
+    }
+
+    public boolean shouldShowLauncher() {
+        return sharedPref.getBoolean(context.getString(R.string.launcher_activity), true);
+    }
 }
