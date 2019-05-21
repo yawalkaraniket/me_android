@@ -12,12 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="100dp"
-        android:background="@drawable/activity_main_background">
+        android:background="@color/lightGray">
 
         <RelativeLayout
             android:id="@+id/top_layout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-250dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -46,7 +47,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="20dp"
                     android:gravity="center"
-                    android:text="already registered?\n SIGN IN"
+                    android:text="@string/already_registered_n_sign_in"
                     android:textStyle="bold" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -82,6 +83,12 @@
         app:cardCornerRadius="35dp"
         android:elevation="5dp">
 
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/signin_register_background">
+        </android.support.constraint.ConstraintLayout>
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -98,6 +105,7 @@
                 android:focusable="true">
 
                 <ImageView
+                    android:id="@+id/sign_in_image"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="10dp"
@@ -108,10 +116,11 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:text="Sign-In"
+                    android:text="@string/sign_in"
                     android:textColor="@color/white"
                     android:textSize="25sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@+id/sign_in_image" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -124,6 +133,7 @@
                 android:background="@drawable/curve_layout">
 
                 <ImageView
+                    android:id="@+id/register_image"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_alignParentLeft="true"
@@ -133,9 +143,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/register_image"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:text="Register"
+                    android:text="@string/register_user"
                     android:textColor="@color/white"
                     android:textSize="25sp"
                     android:textStyle="bold" />

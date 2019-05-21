@@ -15,6 +15,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.avenjr.me.me.ui.Utils.AnimationsUtil.didTapButton;
+import static com.avenjr.me.me.ui.Utils.UiUtil.dp;
 import static com.avenjr.me.me.ui.Utils.UiUtil.getScreenWidthInPixel;
 import static com.avenjr.me.me.ui.animation.MoveAnimation.moveFromTop;
 import static com.avenjr.me.me.ui.animation.MoveAnimation.moveToLeft;
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 didTapButton(view, MainActivity.this);
-                moveFromTop(signInOptions, UiUtil.getScreenHeightInDp(getApplicationContext()) - (alreadySignIn.getHeight() + 10));
+                moveFromTop(signInOptions, signInOptions.getHeight() * 2);
             }
         });
 

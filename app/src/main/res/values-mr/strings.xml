@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="enter_password">पासवर्ड…</string>
+    <string name="app_name">मी</string>
+    <string name="enter_email">ई-मेल आयडी…</string>
+    <string name="forgot_password">" चुकीचा संकेतशब्द"</string>
+    <string name="sign_in_btn_text">" साइन-इन"</string>
+    <string name="confirm_password">" पासवर्डची पुष्टी करा ..."</string>
+    <string name="add_your_password">" तुमचा पासवर्ड जोडा ..."</string>
+    <string name="enter_mobile_number">मोबाइल नंबर प्रविष्ट करा ...</string>
+    <string name="start_with_your_email">" चला आपल्या ईमेलसह प्रारंभ करूया ..."</string>
+</resources>
