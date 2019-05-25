@@ -1,10 +1,12 @@
 package com.avenjr.me.me.ui.Utils;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.DecelerateInterpolator;
 
 import com.avenjr.me.me.R;
 
@@ -69,4 +71,13 @@ public class AnimationsUtil {
 
         view.startAnimation(myAnim);
     }
+
+    public static void animateOnScreen(View view, Context context) {
+        final int screenWidth = UiUtil.getScreenWidthInDp(context);
+        ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationX", screenWidth / 20 );
+        animator.setDuration(1000);
+        animator.setInterpolator(new DecelerateInterpolator());
+        animator.start();
+    }
+
 }

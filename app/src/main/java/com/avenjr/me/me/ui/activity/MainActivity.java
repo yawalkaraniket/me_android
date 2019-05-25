@@ -1,6 +1,7 @@
 package com.avenjr.me.me.ui.activity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -14,17 +15,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.avenjr.me.me.ui.Utils.AnimationsUtil.animateOnScreen;
 import static com.avenjr.me.me.ui.Utils.AnimationsUtil.didTapButton;
 import static com.avenjr.me.me.ui.Utils.UiUtil.dp;
 import static com.avenjr.me.me.ui.Utils.UiUtil.getScreenWidthInPixel;
 import static com.avenjr.me.me.ui.animation.MoveAnimation.moveFromTop;
-import static com.avenjr.me.me.ui.animation.MoveAnimation.moveToLeft;
 import static com.avenjr.me.me.ui.animation.MoveAnimation.moveToRight;
 
 public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.top_layout)
-    RelativeLayout signInOptions;
+    View signInOptions;
 
     @BindView(R.id.sign_in_button)
     RelativeLayout signIn;
@@ -35,26 +36,46 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.already_register_sign_in)
     TextView alreadySignIn;
 
+    int orientation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        orientation = getResources().getConfiguration().orientation;
+
+        if(orientation == Configuration.ORIENTATION_PORTRAIT) {
+            setContentView(R.layout.activity_main);
+        } else {
+            setContentView(R.layout.activity_main_land);
+        }
+
         ButterKnife.bind(this);
 
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        params.height = getScreenWidthInPixel(getApplicationContext()) / 4;
-        params.width = getScreenWidthInPixel(getApplicationContext());
-        params.topMargin = -(getScreenWidthInPixel(getApplicationContext()) / 4) * 2;
-        signInOptions.setLayoutParams(params);
+        if(orientation == Configuration.ORIENTATION_PORTRAIT) {
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+            params.height = getScreenWidthInPixel(getApplicationContext()) / 4;
+            params.width = getScreenWidthInPixel(getApplicationContext());
+            params.topMargin = - (getScreenWidthInPixel(getApplicationContext()) / 4) * 2;
+            signInOptions.setLayoutParams(params);
 
-        moveFromTop(signInOptions, UiUtil.getScreenHeightInDp(getApplicationContext()));
+            moveFromTop(signInOptions, UiUtil.getScreenHeightInDp(getApplicationContext()));
+        } else if(orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            signInOptions.setVisibility(View.GONE);
+        }
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 didTapButton(view, MainActivity.this);
-                moveFromTop(signInOptions, signInOptions.getHeight() * 2);
+                if(orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    moveFromTop(signInOptions, signInOptions.getHeight() * 2);
+                } else if(orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    if(signInOptions.getVisibility() == View.GONE) {
+                        signInOptions.setVisibility(View.VISIBLE);
+                        animateOnScreen(signInOptions, getApplicationContext());
+                    }
+                }
             }
         });
 
@@ -87,7 +108,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        moveFromTop(signInOptions, 350f);
+        if(orientation == Configuration.ORIENTATION_PORTRAIT) {
+            moveFromTop(signInOptions, 350f);
+        }
     }
 
     @Override
