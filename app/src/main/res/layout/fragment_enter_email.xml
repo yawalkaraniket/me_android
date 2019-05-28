@@ -29,7 +29,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                app:cardCornerRadius="10dp">
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -44,7 +45,8 @@
                         android:padding="10dp"
                         android:shadowColor="@color/white"
                         android:singleLine="true"
-                        android:textColorHint="@color/gray"></com.avenjr.me.me.ui.views.CustomEditText>
+                        android:textColorHint="@color/gray">
+                    </com.avenjr.me.me.ui.views.CustomEditText>
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
 

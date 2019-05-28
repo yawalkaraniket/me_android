@@ -3,7 +3,6 @@ package com.avenjr.me.me.ui.activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -14,15 +13,13 @@ import com.avenjr.me.me.ui.Utils.UiUtil;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.avenjr.me.me.ui.Utils.AnimationsUtil.animateOnScreen;
-import static com.avenjr.me.me.ui.Utils.AnimationsUtil.didTapButton;
-import static com.avenjr.me.me.ui.Utils.UiUtil.dp;
 import static com.avenjr.me.me.ui.Utils.UiUtil.getScreenWidthInPixel;
 import static com.avenjr.me.me.ui.animation.MoveAnimation.moveFromTop;
-import static com.avenjr.me.me.ui.animation.MoveAnimation.moveToRight;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity{
 
     @BindView(R.id.top_layout)
     View signInOptions;
@@ -36,6 +33,12 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.already_register_sign_in)
     TextView alreadySignIn;
 
+    @BindView(R.id.sign_in_google)
+    CircleImageView signInWithGoogle;
+
+    @BindView(R.id.main_activity_parent)
+    View parentLayout;
+
     int orientation;
 
 
@@ -46,11 +49,13 @@ public class MainActivity extends AppCompatActivity {
 
         if(orientation == Configuration.ORIENTATION_PORTRAIT) {
             setContentView(R.layout.activity_main);
-        } else {
+        } else if(orientation == Configuration.ORIENTATION_LANDSCAPE){
             setContentView(R.layout.activity_main_land);
         }
 
         ButterKnife.bind(this);
+
+        setUpProgress(parentLayout);
 
         if(orientation == Configuration.ORIENTATION_PORTRAIT) {
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -63,36 +68,35 @@ public class MainActivity extends AppCompatActivity {
         } else if(orientation == Configuration.ORIENTATION_LANDSCAPE) {
             signInOptions.setVisibility(View.GONE);
         }
+    }
 
-        signIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                didTapButton(view, MainActivity.this);
-                if(orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    moveFromTop(signInOptions, signInOptions.getHeight() * 2);
-                } else if(orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    if(signInOptions.getVisibility() == View.GONE) {
-                        signInOptions.setVisibility(View.VISIBLE);
-                        animateOnScreen(signInOptions, getApplicationContext());
-                    }
-                }
+    @OnClick(R.id.sign_in_button)
+    public void signIn() {
+        if(orientation == Configuration.ORIENTATION_PORTRAIT) {
+            moveFromTop(signInOptions, signInOptions.getHeight() * 2);
+        } else if(orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            if(signInOptions.getVisibility() == View.GONE) {
+                signInOptions.setVisibility(View.VISIBLE);
+                animateOnScreen(signInOptions, getApplicationContext());
             }
-        });
+        }
+    }
 
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                didTapButton(view, MainActivity.this);
-                Intent intent = new Intent(MainActivity.this, OnboardingActivity.class);
-                startActivity(intent);
-            }
-        });
+    @OnClick(R.id.register_button)
+    public void register() {
+        Intent intent = new Intent(MainActivity.this, OnboardingActivity.class);
+        startActivity(intent);
     }
 
     @OnClick(R.id.already_register_sign_in)
     public void setAlreadySignIn() {
         Intent intent = new Intent(MainActivity.this, SignInActivity.class);
         startActivity(intent);
+    }
+
+    @OnClick(R.id.sign_in_google)
+    public void googleSingIn() {
+
     }
 
     @Override

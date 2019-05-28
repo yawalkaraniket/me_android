@@ -32,6 +32,7 @@
                 android:layout_height="70dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/sign_in_google"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="10dp"
@@ -102,7 +103,8 @@
                 android:layout_height="50dp"
                 android:background="@drawable/curve_layout"
                 android:clickable="true"
-                android:focusable="true">
+                android:focusable="true"
+                android:elevation="4dp">
 
                 <ImageView
                     android:id="@+id/sign_in_image"
@@ -130,6 +132,7 @@
                 android:layout_below="@+id/sign_in_button"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:elevation="4dp"
                 android:background="@drawable/curve_layout">
 
                 <ImageView
