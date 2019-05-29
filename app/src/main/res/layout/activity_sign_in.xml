@@ -26,6 +26,25 @@
             </com.avenjr.me.me.ui.views.NavigationHeader>
 
             <android.support.constraint.ConstraintLayout
+                android:id="@+id/circleImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/navigationHeader"
+                app:layout_constraintBottom_toTopOf="@id/sign_in_layout">
+
+                <ImageView
+                    android:layout_width="97dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/logo_background"
+                    android:contentDescription="@string/logo_view"
+                    android:padding="10dp"
+                    android:src="@mipmap/ic_launcher_foreground" />
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
                 android:id="@+id/sign_in_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -109,23 +128,14 @@
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
-                android:id="@+id/circleImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/navigationHeader"
-                app:layout_constraintBottom_toTopOf="@id/sign_in_layout">
-
-                <ImageView
-                    android:layout_width="97dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/logo_background"
-                    android:contentDescription="@string/logo_view"
-                    android:padding="10dp"
-                    android:src="@mipmap/ic_launcher_foreground" />
+                android:id="@+id/empty_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/header_height"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sign_in_layout">
             </android.support.constraint.ConstraintLayout>
+
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 </layout>

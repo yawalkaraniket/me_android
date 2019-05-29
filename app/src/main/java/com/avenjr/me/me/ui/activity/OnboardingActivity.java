@@ -2,6 +2,7 @@ package com.avenjr.me.me.ui.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
 import android.widget.ProgressBar;
 
@@ -67,13 +68,9 @@ public class OnboardingActivity extends BaseActivity {
                 replaceFragment(this, VerifyNumberFragment.class);
                 break;
         }
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                currentProgress = (muxProgress/numberOfFragment) * backStackCount;
-                onboardingProgress.setProgress(currentProgress);
-            }
-        }, 200);
+
+        currentProgress = (muxProgress/numberOfFragment) * backStackCount;
+        onboardingProgress.setProgress(currentProgress);
     }
 
     @OnClick(R.id.reg_back_cv_id)
@@ -82,19 +79,26 @@ public class OnboardingActivity extends BaseActivity {
         if (backStackCount <= 2) {
             return;
         }
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                currentProgress = currentProgress - (muxProgress/numberOfFragment);
-                onboardingProgress.setProgress(currentProgress);
-            }
-        }, 200);
         this.getSupportFragmentManager().popBackStack();
+
+        currentProgress = currentProgress - (muxProgress/numberOfFragment);
+        onboardingProgress.setProgress(currentProgress);
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         this.finish();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        clearFragmentManager();
+        super.onSaveInstanceState(outState);
     }
 }

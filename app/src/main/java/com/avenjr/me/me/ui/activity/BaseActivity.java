@@ -68,6 +68,15 @@ public class BaseActivity extends AppCompatActivity {
                 .commit();
     }
 
+    protected void clearFragmentManager() {
+        try {
+            String name = getSupportFragmentManager().getBackStackEntryAt(0).getName();
+            getSupportFragmentManager().popBackStack(name, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        } catch (IllegalStateException s) {
+            // There's no way to avoid getting this if saveInstanceState has already been called.
+        }
+    }
+
     /**
      * Adding progress bar
      * Link: https://www.zoftino.com/adding-views-&-constraints-to-android-constraint-layout-programmatically : Adding constraint layout programatically

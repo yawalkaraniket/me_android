@@ -69,9 +69,7 @@ public class LoginViewModel extends ViewModel {
 
     // To process the login.
     public void onLoginClicked(View view) {
-
-        Call<Employee> call = ApiUtils.getMeService().getEmployee("703");
-       call.enqueue(new Callback<Employee>() {
+        ApiUtils.getMeService().getEmployee("703").enqueue(new Callback<Employee>() {
            @Override
            public void onResponse(Call<Employee> call, Response<Employee> response) {
                Log.d("","");
