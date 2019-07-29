@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/forgot_password_dialog_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:background="@drawable/curve_only_top_50"
@@ -41,7 +41,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
@@ -67,7 +67,7 @@
                         android:textColorHint="@color/gray">
                     </com.avenjr.me.me.ui.views.CustomEditText>
                 </RelativeLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
             <com.avenjr.me.me.ui.views.CustomTextView
                 android:layout_width="match_parent"
@@ -117,7 +117,7 @@
             </View>
 
         </LinearLayout>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <com.avenjr.me.me.ui.views.CustomTextView
@@ -144,4 +144,4 @@
         app:layout_constraintStart_toEndOf="@id/btn_id_submit"
         app:layout_constraintEnd_toEndOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

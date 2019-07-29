@@ -2,7 +2,7 @@ package com.avenjr.me.me.ui.views;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.v7.widget.CardView;
+import androidx.cardview.widget.CardView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,12 +35,7 @@ public class NavigationHeader extends RelativeLayout {
         this.type = type;
         setUpUI(title);
 
-        navigationBack.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                activity.finish();
-            }
-        });
+        navigationBack.setOnClickListener(view -> activity.finish());
     }
 
     private void setUpUI(String title) {

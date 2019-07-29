@@ -1,9 +1,8 @@
 package com.avenjr.me.me.ui.activity;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.widget.CardView;
+
+import androidx.cardview.widget.CardView;
 import android.widget.ProgressBar;
 
 import com.avenjr.me.me.R;

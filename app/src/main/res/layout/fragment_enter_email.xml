@@ -21,34 +21,37 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:text="@string/start_with_your_email"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="10dp">
-
                     <com.avenjr.me.me.ui.views.CustomEditText
                         android:id="@+id/reg_email_txt"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:hint="@string/enter_email"
+                        android:background="@null"
                         android:padding="10dp"
+                        android:layout_margin="10dp"
                         android:shadowColor="@color/white"
                         android:singleLine="true"
                         android:textColorHint="@color/gray">
                     </com.avenjr.me.me.ui.views.CustomEditText>
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
+                <ImageView
+                    android:id="@+id/approve_reject_image"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="end"
+                    android:layout_margin="20dp"
+                    android:contentDescription="@string/approve_reject_image" />
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 
