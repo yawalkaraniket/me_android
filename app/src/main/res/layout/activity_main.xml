@@ -12,54 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="100dp"
-        android:background="@drawable/activity_main_background">
-
-        <RelativeLayout
-            android:id="@+id/top_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-300dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginTop="-140dp"
-                android:background="@drawable/circle"></RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/sign_in_options"
-                android:layout_width="match_parent"
-                android:layout_height="70dp">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="10dp"
-                    android:layout_toLeftOf="@id/already_register_sign_in"
-                    android:src="@drawable/google_logo"
-                    app:civ_border_color="@color/white"
-                    app:civ_border_width="2dp" />
-
-                <TextView
-                    android:id="@+id/already_register_sign_in"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:gravity="center"
-                    android:text="already registered?\n SIGN IN"
-                    android:textStyle="bold" />
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="10dp"
-                    android:layout_toRightOf="@id/already_register_sign_in"
-                    android:src="@drawable/facebook_logo"
-                    app:civ_border_color="@color/white"
-                    app:civ_border_width="2dp" />
-            </RelativeLayout>
-        </RelativeLayout>
+        android:background="@color/lightGray">
 
         <ImageView
             android:id="@+id/logo"
@@ -69,9 +22,17 @@
             android:layout_marginTop="150dp"
             android:src="@mipmap/ic_launcher_foreground">
         </ImageView>
+        <ImageView
+            android:id="@+id/btn_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_location"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/logo"
+            android:layout_margin="@dimen/header_height"/>
     </RelativeLayout>
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/login_register_view"
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -82,6 +43,12 @@
         app:cardBackgroundColor="@color/appBackground"
         app:cardCornerRadius="35dp"
         android:elevation="5dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/signin_register_background">
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -96,9 +63,11 @@
                 android:layout_height="50dp"
                 android:background="@drawable/curve_layout"
                 android:clickable="true"
-                android:focusable="true">
+                android:focusable="true"
+                android:elevation="4dp">
 
                 <ImageView
+                    android:id="@+id/sign_in_image"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="10dp"
@@ -109,10 +78,11 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:text="Sign-In"
+                    android:text="@string/sign_in"
                     android:textColor="@color/white"
                     android:textSize="25sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@+id/sign_in_image" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -122,9 +92,11 @@
                 android:layout_below="@+id/sign_in_button"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
+                android:elevation="4dp"
                 android:background="@drawable/curve_layout">
 
                 <ImageView
+                    android:id="@+id/register_image"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_alignParentLeft="true"
@@ -134,9 +106,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/register_image"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:text="Register"
+                    android:text="@string/register_user"
                     android:textColor="@color/white"
                     android:textSize="25sp"
                     android:textStyle="bold" />
@@ -144,6 +117,6 @@
 
             </RelativeLayout>
         </RelativeLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

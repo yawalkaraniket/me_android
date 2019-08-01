@@ -1,6 +1,6 @@
 package com.avenjr.me.me.viewmodel.modlefactory;
 
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModel;
 import android.text.Editable;
 import android.text.TextWatcher;
 

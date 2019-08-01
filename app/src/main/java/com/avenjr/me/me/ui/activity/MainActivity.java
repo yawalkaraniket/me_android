@@ -1,11 +1,11 @@
 package com.avenjr.me.me.ui.activity;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.avenjr.me.me.R;
 
@@ -13,15 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.avenjr.me.me.ui.Utils.AnimationsUtil.didTapButton;
-import static com.avenjr.me.me.ui.animation.MoveAnimation.moveFromTop;
-import static com.avenjr.me.me.ui.animation.MoveAnimation.moveToLeft;
-import static com.avenjr.me.me.ui.animation.MoveAnimation.moveToRight;
-
-public class MainActivity extends AppCompatActivity {
-
-    @BindView(R.id.top_layout)
-    RelativeLayout signInOptions;
+public class MainActivity extends BaseActivity{
 
     @BindView(R.id.sign_in_button)
     RelativeLayout signIn;
@@ -29,38 +21,46 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.register_button)
     RelativeLayout register;
 
-    @BindView(R.id.already_register_sign_in)
-    TextView alreadySignIn;
+    @BindView(R.id.main_activity_parent)
+    View parentLayout;
+
+    @BindView(R.id.btn_location)
+    ImageView loactionLayout;
+
+    int orientation;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        orientation = getResources().getConfiguration().orientation;
+
+        if(orientation == Configuration.ORIENTATION_PORTRAIT) {
+            setContentView(R.layout.activity_main);
+        } else if(orientation == Configuration.ORIENTATION_LANDSCAPE){
+            setContentView(R.layout.activity_main_land);
+        }
+
         ButterKnife.bind(this);
-        moveFromTop(signInOptions, 350f);
 
-        signIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                didTapButton(view, MainActivity.this);
-                moveFromTop(signInOptions, 600f);
-            }
-        });
-
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                didTapButton(view, MainActivity.this);
-                Intent intent = new Intent(MainActivity.this, OnboardingActivity.class);
-                startActivity(intent);
-            }
-        });
+        setUpProgress(parentLayout);
     }
 
-    @OnClick(R.id.already_register_sign_in)
-    public void setAlreadySignIn() {
+    @OnClick(R.id.sign_in_button)
+    public void signIn() {
         Intent intent = new Intent(MainActivity.this, SignInActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.register_button)
+    public void register() {
+        Intent intent = new Intent(MainActivity.this, OnboardingActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.btn_location)
+    public void openLocation() {
+        Intent intent = new Intent(MainActivity.this, LocationActivity.class);
         startActivity(intent);
     }
 
@@ -77,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        moveFromTop(signInOptions, 350f);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

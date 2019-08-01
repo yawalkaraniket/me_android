@@ -1,15 +1,16 @@
 package com.avenjr.me.me.ui.activity;
 
 import android.content.Intent;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.avenjr.me.me.R;
+import com.avenjr.me.me.db.AppPreferences;
 import com.avenjr.me.me.ui.Utils.AnimationsUtil;
 import com.avenjr.me.me.ui.animation.FlipAnimation;
 
@@ -29,29 +30,39 @@ public class LauncherActivity extends AppCompatActivity {
     @BindView(R.id.profile_image_view)
     ImageView profileImageView;
 
-    @BindView(R.id.logo_parent)
-    LinearLayout logo;
+    @BindView(R.id.logo)
+    ImageView logo;
+
+    AppPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
         ButterKnife.bind(this);
+        preferences = new AppPreferences(this);
 
-        logo.setVisibility(View.GONE);
-        setCircleLayout();
-        profileImageView.getLayoutParams().height = getScreenWidthInPixel(getApplicationContext())/2;
-        profileImageView.getLayoutParams().height =  getScreenWidthInPixel(getApplicationContext())/2;
-        flipCard();
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(LauncherActivity.this, MainActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.goup, R.anim.godown);
-            }
-        },2000L);
+        // Visible only once
+        final Intent mainActivityIntent = new Intent(LauncherActivity.this, MainActivity.class);
+        if (preferences.shouldShowLauncher()) {
+            logo.setVisibility(View.GONE);
+            setCircleLayout();
+            profileImageView.getLayoutParams().height = getScreenWidthInPixel(getApplicationContext()) / 2;
+            profileImageView.getLayoutParams().height = getScreenWidthInPixel(getApplicationContext()) / 2;
+            flipCard();
+            MediaPlayer player = MediaPlayer.create(getApplicationContext(), R.raw.welcome);
+            player.start();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    startActivity(mainActivityIntent);
+                    overridePendingTransition(R.anim.goup, R.anim.godown);
+                    preferences.setLauncherActivityPreferences(false);
+                }
+            }, 2000);
+        } else {
+            startActivity(mainActivityIntent);
+        }
     }
 
     private void setCircleLayout() {
@@ -62,8 +73,7 @@ public class LauncherActivity extends AppCompatActivity {
         circleLayout.setLayoutParams(params);
     }
 
-    private void flipCard()
-    {
+    private void flipCard() {
         FlipAnimation flipAnimation = new FlipAnimation(profileImageView, logo);
         profileImageView.startAnimation(flipAnimation);
         new Handler().postDelayed(new Runnable() {
@@ -73,5 +83,13 @@ public class LauncherActivity extends AppCompatActivity {
 
             }
         }, 1000);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!preferences.shouldShowLauncher()) {
+            this.finish();
+        }
     }
 }

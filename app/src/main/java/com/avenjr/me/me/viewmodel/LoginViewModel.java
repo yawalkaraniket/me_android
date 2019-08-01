@@ -1,6 +1,6 @@
 package com.avenjr.me.me.viewmodel;
 
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModel;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -69,12 +69,10 @@ public class LoginViewModel extends ViewModel {
 
     // To process the login.
     public void onLoginClicked(View view) {
-
-        Call<Employee> call = ApiUtils.getMeService().getEmployee("703");
-       call.enqueue(new Callback<Employee>() {
+        ApiUtils.getMeService().getEmployee("19204").enqueue(new Callback<Employee>() {
            @Override
            public void onResponse(Call<Employee> call, Response<Employee> response) {
-               Log.d("","");
+               Log.d("",response.toString());
            }
 
            @Override
