@@ -48,4 +48,8 @@ public class UiUtil {
         DisplayMetrics metrics = getDisplayMetrics();
         return (float) metrics.densityDpi / 160f;
     }
+
+    public static int dp(float value) {
+        return (int) (value * dp());
+    }
 }

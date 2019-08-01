@@ -19,10 +19,10 @@
             <com.avenjr.me.me.ui.views.CustomTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
+                android:layout_margin="@dimen/content_margin"
                 android:text="@string/start_with_your_email"
                 android:textColor="@color/black"
-                android:textSize="25sp"
+                android:textSize="@dimen/content_description_size"
                 android:textStyle="bold" />
 
             <androidx.cardview.widget.CardView
