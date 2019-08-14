@@ -4,5 +4,5 @@
     <dimen name="header_height">55dp</dimen>
     <dimen name="half_of_the_header_width">25dp</dimen>
     <dimen name="content_description_size">20sp</dimen>
-    <dimen name="content_margin">15dp</dimen>
+    <dimen name="content_margin">15sp</dimen>
 </resources>

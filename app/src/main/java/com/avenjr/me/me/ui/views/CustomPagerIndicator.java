@@ -12,8 +12,9 @@ import com.avenjr.me.me.R;
 import static com.avenjr.me.me.ui.Utils.UiUtil.dp;
 
 public class CustomPagerIndicator extends LinearLayout {
+
     public CustomPagerIndicator(Context context, @Nullable AttributeSet attrs) {
-        super(context);
+        super(context, attrs);
         setOrientation(HORIZONTAL);
     }
 

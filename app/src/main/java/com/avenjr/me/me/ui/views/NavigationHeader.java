@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.avenjr.me.me.R;
 import com.avenjr.me.me.ui.activity.NavigationActivity;
-import com.avenjr.me.me.ui.activity.WelcomeActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -73,6 +72,7 @@ public class NavigationHeader extends RelativeLayout {
                 skipButton.setOnClickListener(v -> {
                     activity.finish();
                     Intent intent = new Intent(activity, NavigationActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     activity.startActivity(intent);
                 });
                 headerTitle.setVisibility(VISIBLE);

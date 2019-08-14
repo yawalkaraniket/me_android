@@ -33,7 +33,7 @@ public class OnboardingActivity extends BaseActivity {
     ProgressBar onboardingProgress;
 
     int muxProgress = 100;
-    int numberOfFragment = 3;
+    int numberOfFragment = 2;
 
     AppPreferences preferences;
     int backStackCount, currentProgress = muxProgress;
@@ -58,12 +58,9 @@ public class OnboardingActivity extends BaseActivity {
         backStackCount = this.getSupportFragmentManager().getBackStackEntryCount();
         switch (backStackCount) {
             case 1:
-                replaceFragment(this, EnterEmailFragment.class);
-                break;
-            case 2:
                 replaceFragment(this, EnterPasswordFragment.class);
                 break;
-            case 3:
+            case 2:
                 replaceFragment(this, VerifyNumberFragment.class);
                 break;
         }

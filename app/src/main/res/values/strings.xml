@@ -27,7 +27,7 @@
     <string name="email" translatable="false">null</string>
     <string name="launcher_activity" translatable="false">true</string>
     <string name="logo_view">logo_view</string>
-    <string name="loading_generic_message">loading...</string>
+    <string name="loading_generic_message">loading…</string>
     <string name="submit">Submit</string>
     <string name="cancel">Cancel</string>
 
@@ -43,12 +43,14 @@
     <string name="skip">Skip</string>
     <string name="are_you_sure">Are your sure?</string>
     <string name="Yes">Yes</string>
-    <string name="welcome">Welcome!</string>
+    <string name="my_intrest">My Interest</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="select_your_hobbies">Select your hobbies...</string>
+    <string name="select_your_hobbies">Select your hobbies…</string>
     <string name="back_button">back_button</string>
     <string name="next_button">next_button</string>
+    <string name="select_hobbies_title">Select your hobbies to create your profile…</string>
+    <string name="select_extra_activities_title">Select your extra activities to create your profile…</string>
 
 </resources>
