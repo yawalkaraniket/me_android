@@ -87,7 +87,7 @@ public class SignInActivity extends AppCompatActivity implements LoginResultCall
             }
         };
 
-        final ClickableSpan forgorPassword = new ClickableSpan() {
+        final ClickableSpan forgotPassword = new ClickableSpan() {
             @Override
             public void onClick(@NonNull View view) {
                 DialogUtil.forgotPasswordDialog(SignInActivity.this, clicks ->{ }, clicks ->{});
@@ -108,7 +108,7 @@ public class SignInActivity extends AppCompatActivity implements LoginResultCall
         int passwordEnd = passwordStart + getResources().getString(R.string.password).length();
         sb.setSpan(foregroundColorSpan, emailStart, emailStart, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         sb.setSpan(forgotId, emailStart, emailEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        sb.setSpan(forgorPassword, passwordStart, passwordEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sb.setSpan(forgotPassword, passwordStart, passwordEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         sb.setSpan(new UnderlineSpan(), emailStart, emailEnd, 0);
         sb.setSpan(new UnderlineSpan(), passwordStart, passwordEnd, 0);
 

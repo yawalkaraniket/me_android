@@ -1,6 +1,10 @@
 package com.avenjr.me.me.ui.fragments;
 
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,9 +12,25 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.avenjr.me.me.R;
+import com.google.android.exoplayer2.ExoPlayerFactory;
+import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
+import com.google.android.exoplayer2.extractor.ExtractorsFactory;
+import com.google.android.exoplayer2.source.ExtractorMediaSource;
+import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
+import com.google.android.exoplayer2.trackselection.TrackSelector;
+import com.google.android.exoplayer2.ui.PlayerView;
+import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
+import com.google.android.exoplayer2.upstream.BandwidthMeter;
+import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
+import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,7 +40,15 @@ public class WelcomeFragment extends Fragment {
     @BindView(R.id.screen_title)
     TextView screenTitle;
 
+    @BindView(R.id.player_view)
+    PlayerView exoPlayerView;
+
+    @BindView(R.id.video_progress_bar)
+    ProgressBar videoProgressBar;
+
+    SimpleExoPlayer simpleExoPlayer;
     private String title;
+    String URI = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -33,9 +61,41 @@ public class WelcomeFragment extends Fragment {
             title = getArguments().getString("screen");
         }
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            videoProgressBar.setIndeterminateTintList(ColorStateList.valueOf(getResources().getColor(R.color.appBackgroundDark)));
+        }
+
         screenTitle.setText(title);
 
+        initializePlayer(URI);
+
         return view;
+    }
+
+    private void initializePlayer(String URI) {
+        BandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
+        TrackSelector trackSelector = new DefaultTrackSelector(new AdaptiveTrackSelection.Factory(bandwidthMeter));
+        simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(this.getContext(), trackSelector);
+
+        Uri videoUri = Uri.parse(URI);
+
+        DefaultDataSourceFactory sourceFactory = new DefaultDataSourceFactory(this.getContext(), "video_player");
+        ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
+        MediaSource mediaSource = new ExtractorMediaSource(videoUri, sourceFactory, extractorsFactory, null, null);
+        exoPlayerView.setPlayer(simpleExoPlayer);
+        simpleExoPlayer.prepare(mediaSource);
+        simpleExoPlayer.setPlayWhenReady(true);
+
+        simpleExoPlayer.addListener(new Player.EventListener() {
+            @Override
+            public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+                if (playbackState == Player.STATE_BUFFERING){
+                    videoProgressBar.setVisibility(View.VISIBLE);
+                } else {
+                    videoProgressBar.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
     }
 
 }

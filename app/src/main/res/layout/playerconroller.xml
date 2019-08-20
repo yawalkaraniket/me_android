@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/exo_play"
+        android:layout_width="@dimen/header_height"
+        android:layout_height="@dimen/header_height"
+        android:src="@drawable/ic_action_location"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/exo_pause"
+        android:layout_width="@dimen/header_height"
+        android:layout_height="@dimen/header_height"
+        android:src="@drawable/ic_action_pause"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.exoplayer2.ui.DefaultTimeBar
+        android:id="@id/exo_progress"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="8"
+        app:bar_height="2dp"
+        app:buffered_color="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:played_color="@color/appSecondaryColor"
+        app:scrubber_color="@color/appSecondaryColor"
+        app:scrubber_enabled_size="8dp"
+        app:unplayed_color="@color/appBackgroundDark" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

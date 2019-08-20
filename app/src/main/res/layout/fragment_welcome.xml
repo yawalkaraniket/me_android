@@ -10,10 +10,20 @@
         android:id="@+id/screen_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
         android:textSize="@dimen/content_margin"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="10dp" />
+
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:id="@+id/player_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        app:controller_layout_id="@layout/playerconroller"
+        app:layout_constraintTop_toBottomOf="@+id/screen_title"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/interest_recycler_view"
@@ -22,6 +32,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/screen_title" />
+        app:layout_constraintTop_toBottomOf="@+id/player_view" />
+
+    <ProgressBar
+        android:id="@+id/video_progress_bar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        app:layout_constraintBottom_toBottomOf="@+id/player_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/screen_title"
+        app:layout_constraintTop_toTopOf="@+id/player_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
