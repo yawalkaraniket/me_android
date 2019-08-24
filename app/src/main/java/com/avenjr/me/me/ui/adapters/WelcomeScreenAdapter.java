@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -19,6 +20,8 @@ public class WelcomeScreenAdapter extends RecyclerView.Adapter<WelcomeScreenAdap
 
     private ArrayList<String> list;
     private Context context;
+    int parentHeight;
+    int parentWidth;
 
     public WelcomeScreenAdapter(Context context, ArrayList<String> list) {
         this.list = list;
@@ -30,12 +33,10 @@ public class WelcomeScreenAdapter extends RecyclerView.Adapter<WelcomeScreenAdap
     public WelcomeScreenAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.welcome_cards, parent, false);
-        ConstraintSet cs = new ConstraintSet();
-        ConstraintLayout layout = (ConstraintLayout)parent;
-        cs.clone(layout);
-        cs.constrainHeight(parent.getId(), UiUtil.getScreenHeightInDp(context) / 3);
-        cs.constrainWidth(parent.getId(), UiUtil.getScreenWidthInPixel(context) / 3);
-        cs.applyTo(layout);
+
+        parentHeight = UiUtil.dp(parent.getHeight());
+        parentWidth = UiUtil.dp(parent.getWidth());
+
         return new WelcomeScreenAdapterViewHolder(view);
     }
 
@@ -52,6 +53,11 @@ public class WelcomeScreenAdapter extends RecyclerView.Adapter<WelcomeScreenAdap
     class WelcomeScreenAdapterViewHolder extends RecyclerView.ViewHolder {
         WelcomeScreenAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            LinearLayout layout = (LinearLayout) itemView;
+            ViewGroup.LayoutParams params = layout.getLayoutParams();
+            params.height = UiUtil.getScreenHeightInDp(context) / 2;
+            layout.setLayoutParams(params);
         }
     }
 }

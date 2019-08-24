@@ -85,6 +85,10 @@ public class WelcomeFragment extends Fragment {
         list.add("slkfdjlsdkj");
         list.add("skdfsljf");
         list.add("lksejdflkj");
+        list.add("sl;df;ldsk");
+        list.add("slkfdjlsdkj");
+        list.add("skdfsljf");
+        list.add("lksejdflkj");
         recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
         WelcomeScreenAdapter adapter = new WelcomeScreenAdapter(this.getContext(), list);
         recyclerView.setAdapter(adapter);
