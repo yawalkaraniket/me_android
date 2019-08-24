@@ -2,12 +2,13 @@ package com.avenjr.me.me.ui.fragments;
 
 
 import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.avenjr.me.me.R;
+import com.avenjr.me.me.ui.adapters.WelcomeScreenAdapter;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
@@ -27,10 +29,11 @@ import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.ui.PlayerView;
-import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,6 +48,9 @@ public class WelcomeFragment extends Fragment {
 
     @BindView(R.id.video_progress_bar)
     ProgressBar videoProgressBar;
+
+    @BindView(R.id.interest_recycler_view)
+    RecyclerView recyclerView;
 
     SimpleExoPlayer simpleExoPlayer;
     private String title;
@@ -67,9 +73,21 @@ public class WelcomeFragment extends Fragment {
 
         screenTitle.setText(title);
 
+        initializeAdapter();
         initializePlayer(URI);
 
         return view;
+    }
+
+    private void initializeAdapter() {
+        ArrayList<String> list = new ArrayList<>();
+        list.add("sl;df;ldsk");
+        list.add("slkfdjlsdkj");
+        list.add("skdfsljf");
+        list.add("lksejdflkj");
+        recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
+        WelcomeScreenAdapter adapter = new WelcomeScreenAdapter(this.getContext(), list);
+        recyclerView.setAdapter(adapter);
     }
 
     private void initializePlayer(String URI) {

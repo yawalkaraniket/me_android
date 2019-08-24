@@ -150,6 +150,8 @@
                     android:text="OR CONTINUE WITH"
                     android:background="@color/white"
                     android:layout_margin="2dp"
+                    android:paddingLeft="5dp"
+                    android:paddingStart="5dp"
                     android:layout_centerHorizontal="true"
                     app:layout_constraintTop_toTopOf="parent" />
 

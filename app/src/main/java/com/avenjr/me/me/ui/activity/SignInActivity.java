@@ -21,6 +21,7 @@ import com.avenjr.me.me.R;
 import com.avenjr.me.me.databinding.ActivitySignInBinding;
 import com.avenjr.me.me.interfaces.LoginResultCallbacks;
 import com.avenjr.me.me.ui.Utils.DialogUtil;
+import com.avenjr.me.me.ui.Utils.UiUtil;
 import com.avenjr.me.me.ui.views.CustomEditText;
 import com.avenjr.me.me.ui.views.NavigationHeader;
 import com.avenjr.me.me.viewmodel.LoginViewModel;
@@ -123,6 +124,7 @@ public class SignInActivity extends AppCompatActivity implements LoginResultCall
 
     @Override
     public void onError(String message) {
+        UiUtil.vibrate(this);
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 }
