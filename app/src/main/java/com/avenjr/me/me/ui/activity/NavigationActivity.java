@@ -32,9 +32,8 @@ public class NavigationActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
         ButterKnife.bind(this);
-
+        clearAllNavigationSelection();
         initializePager();
-
     }
 
     private void initializePager() {
@@ -44,17 +43,29 @@ public class NavigationActivity extends BaseActivity {
 
     @OnClick(R.id.navigation_home_layout)
     public void navigationHome() {
+        clearAllNavigationSelection();
+        homeNavigation.setImageDrawable(getResources().getDrawable(R.mipmap.ic_home_active_round));
         navigationViewPager.setCurrentItem(0, true);
     }
 
     @OnClick(R.id.navigation_friends_layout)
     public void navigationFriends() {
+        clearAllNavigationSelection();
+        friendsNavigation.setImageDrawable(getResources().getDrawable(R.mipmap.ic_friends_active_round));
         navigationViewPager.setCurrentItem(1, true);
     }
 
     @OnClick(R.id.navigation_profile_layout)
     public void navigationProfile() {
+        clearAllNavigationSelection();
+        profileNavigation.setImageDrawable(getResources().getDrawable(R.mipmap.ic_profile_active_round));
         navigationViewPager.setCurrentItem(2, true);
+    }
+
+    private void clearAllNavigationSelection() {
+        homeNavigation.setImageDrawable(getResources().getDrawable(R.mipmap.ic_hone_non_active_round));
+        friendsNavigation.setImageDrawable(getResources().getDrawable(R.mipmap.ic_friends_non_active_round));
+        profileNavigation.setImageDrawable(getResources().getDrawable(R.mipmap.ic_profile_non_active_round));
     }
 
     @Override

@@ -10,6 +10,9 @@
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -39,8 +42,7 @@
         <activity android:name=".ui.activity.OnboardingActivity" />
         <activity android:name=".ui.activity.LocationActivity" />
         <service android:name=".services.MyIntentService"/>
-        <service android:name=".services.MyService">
-        </service>
+        <service android:name=".services.MyService"/>
     </application>
 
 </manifest>

@@ -2,6 +2,6 @@
     android:shape="oval">
     <solid android:color="@color/white"/>
     <stroke
-        android:width="2dp"
+        android:width="3dp"
         android:color="@color/appBackgroundDark"/>
 </shape>
