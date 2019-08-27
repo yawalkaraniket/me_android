@@ -52,5 +52,6 @@
     <string name="next_button">next_button</string>
     <string name="select_hobbies_title">Select your hobbies to create your profile…</string>
     <string name="select_extra_activities_title">Select your extra activities to create your profile…</string>
+    <string name="share">Share</string>
 
 </resources>

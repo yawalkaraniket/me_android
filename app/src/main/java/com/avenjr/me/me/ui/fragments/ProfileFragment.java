@@ -9,15 +9,16 @@ import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pDeviceList;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import com.avenjr.me.me.R;
 import com.avenjr.me.me.receivers.WifiDirectBroadcastReceiver;
@@ -29,11 +30,24 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.avenjr.me.me.ui.Utils.UiUtil.getScreenHeightInDp;
+import static com.avenjr.me.me.ui.Utils.UiUtil.getScreenWidthInPixel;
 
 public class ProfileFragment extends Fragment {
 
     @BindView(R.id.share_button)
     CustomTextView shareButton;
+
+    @BindView(R.id.profile_background)
+    ImageView profileBackground;
+
+    @BindView(R.id.profile_image)
+    CircleImageView profileImage;
+
+    @BindView(R.id.profile_image_layout)
+    RelativeLayout profileImageParentLayout;
 
     private WifiManager wifiManager;
     private WifiP2pManager wifiP2pManager;
@@ -44,9 +58,6 @@ public class ProfileFragment extends Fragment {
     String[] deviceNameArray;
     WifiP2pDevice device;
 
-    public ProfileFragment() {
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,12 +65,9 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         ButterKnife.bind(this, view);
 
-        this.wifiManager = (WifiManager) this.getActivity().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        this.wifiP2pManager = (WifiP2pManager) getActivity().getSystemService(Context.WIFI_P2P_SERVICE);
-        this.channel = wifiP2pManager.initialize(this.getContext(), Looper.getMainLooper(), null);
+        initializeWifiReceiver();
 
-        initializeReceiver();
-
+        setProfileImageLayout();
 
         return view;
     }
@@ -87,9 +95,13 @@ public class ProfileFragment extends Fragment {
         this.getActivity().unregisterReceiver(broadcastReceiver);
     }
 
-    private void initializeReceiver() {
+    private void initializeWifiReceiver() {
+        this.wifiManager = (WifiManager) this.getActivity().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        this.wifiP2pManager = (WifiP2pManager) getActivity().getSystemService(Context.WIFI_P2P_SERVICE);
+        this.channel = wifiP2pManager.initialize(this.getContext(), Looper.getMainLooper(), null);
         this.broadcastReceiver = new WifiDirectBroadcastReceiver(wifiP2pManager, channel, ProfileFragment.this);
         this.intentFilter = new IntentFilter();
+
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
@@ -116,6 +128,21 @@ public class ProfileFragment extends Fragment {
                 Toast.makeText(getActivity(), "Discovery Failed", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void setProfileImageLayout() {
+        profileImageParentLayout.setLayoutParams(getImageLayoutParams());
+    }
+
+    private RelativeLayout.LayoutParams getImageLayoutParams() {
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        int width = getScreenWidthInPixel(this.getContext()) / 3;
+        int height = (int) (getScreenHeightInDp(this.getContext()) / 1.5);
+        params.height = width;
+        params.width = width;
+        params.setMargins(0, height, 0, 0);
+        params.addRule(RelativeLayout.CENTER_HORIZONTAL);
+        return params;
     }
 
 }
