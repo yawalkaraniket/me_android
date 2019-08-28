@@ -54,7 +54,7 @@ public class WelcomeFragment extends Fragment {
 
     SimpleExoPlayer simpleExoPlayer;
     private String title;
-    String URI = "";
+    String URI = "https://www.radiantmediaplayer.com/media/bbb-360p.mp4";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -2,7 +2,6 @@ package com.avenjr.me.me.ui.activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
@@ -14,7 +13,6 @@ import com.avenjr.me.me.ui.views.NavigationHeader;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -28,12 +26,6 @@ public class WelcomeActivity extends AppCompatActivity {
     @BindView(R.id.pager_indicator)
     CustomPagerIndicator pagerIndicator;
 
-    @BindView(R.id.welcome__next)
-    CardView nextButton;
-
-    @BindView(R.id.welcome__back)
-    CardView backButton;
-
     int lastSelectedScreen;
 
     @Override
@@ -46,16 +38,6 @@ public class WelcomeActivity extends AppCompatActivity {
                 getResources().getString(R.string.my_intrest));
 
         setUpPager();
-    }
-
-    @OnClick(R.id.welcome__back)
-    public void backButtonClick() {
-        welcomePager.setCurrentItem(lastSelectedScreen - 1, true);
-    }
-
-    @OnClick(R.id.welcome__next)
-    public void nextButtonClick() {
-        welcomePager.setCurrentItem(lastSelectedScreen + 1, true);
     }
 
     private void setUpPager() {

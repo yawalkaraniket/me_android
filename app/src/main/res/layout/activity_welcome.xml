@@ -26,29 +26,9 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="15dp">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/welcome__back"
-            android:layout_width="@dimen/header_width"
-            android:layout_height="@dimen/header_width"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_margin="5dp"
-            android:background="@drawable/signin_register_background"
-            app:cardCornerRadius="@dimen/half_of_the_header_width"
-            app:cardElevation="2dp">
-
-            <ImageView
-                android:id="@+id/back_button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="5dp"
-                android:src="@drawable/ic_navigate_back_24dp"
-                android:contentDescription="@string/back_button" />
-        </androidx.cardview.widget.CardView>
 
         <com.avenjr.me.me.ui.views.CustomPagerIndicator
             android:id="@+id/pager_indicator"
@@ -56,25 +36,6 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"/>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/welcome__next"
-            android:layout_width="@dimen/header_width"
-            android:layout_height="@dimen/header_width"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_margin="5dp"
-            android:background="@drawable/signin_register_background"
-            app:cardCornerRadius="@dimen/half_of_the_header_width"
-            app:cardElevation="2dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="5dp"
-                android:src="@drawable/ic_navigate_next_24dp"
-                android:contentDescription="@string/next_button" />
-        </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
 

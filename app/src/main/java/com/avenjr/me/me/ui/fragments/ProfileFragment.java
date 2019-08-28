@@ -1,6 +1,5 @@
 package com.avenjr.me.me.ui.fragments;
 
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.IntentFilter;
@@ -15,13 +14,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.avenjr.me.me.R;
 import com.avenjr.me.me.receivers.WifiDirectBroadcastReceiver;
+import com.avenjr.me.me.ui.animation.ProgressBarAnimation;
 import com.avenjr.me.me.ui.views.CustomTextView;
 
 import java.util.ArrayList;
@@ -49,6 +51,9 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.profile_image_layout)
     RelativeLayout profileImageParentLayout;
 
+    @BindView(R.id.progressBar)
+    ProgressBar profileProgressBar;
+
     private WifiManager wifiManager;
     private WifiP2pManager wifiP2pManager;
     private WifiP2pManager.Channel channel;
@@ -59,7 +64,7 @@ public class ProfileFragment extends Fragment {
     WifiP2pDevice device;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
@@ -70,6 +75,12 @@ public class ProfileFragment extends Fragment {
         setProfileImageLayout();
 
         return view;
+    }
+
+    private void setProfileProgress() {
+        ProgressBarAnimation animation = new ProgressBarAnimation(profileProgressBar, 1, 200); // see this max value coming back here, we animate towards that value
+        animation.setDuration(1000);
+        profileProgressBar.startAnimation(animation);
     }
 
     public WifiP2pManager.PeerListListener peerListListener = new WifiP2pManager.PeerListListener() {
@@ -114,6 +125,7 @@ public class ProfileFragment extends Fragment {
             wifiManager.setWifiEnabled(true);
         }
         searchDevices();
+        setProfileProgress();
     }
 
     private void searchDevices() {
@@ -137,10 +149,10 @@ public class ProfileFragment extends Fragment {
     private RelativeLayout.LayoutParams getImageLayoutParams() {
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         int width = getScreenWidthInPixel(this.getContext()) / 3;
-        int height = (int) (getScreenHeightInDp(this.getContext()) / 1.5);
+        int height = getScreenHeightInDp(this.getContext()) / 4;
         params.height = width;
         params.width = width;
-        params.setMargins(0, height, 0, 0);
+        params.setMargins(0, (int) (height + getResources().getDimension(R.dimen.half_of_the_header_width)), 0, 0);
         params.addRule(RelativeLayout.CENTER_HORIZONTAL);
         return params;
     }
