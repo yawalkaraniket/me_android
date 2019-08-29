@@ -13,10 +13,28 @@
         android:layout_height="55dp">
     </com.avenjr.me.me.ui.views.NavigationHeader>
 
+    <com.avenjr.me.me.ui.adapters.NavigationViewPager
+        android:id="@+id/welcome_pager"
+        android:layout_below="@id/navigation_header"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.rd.PageIndicatorView
+        android:id="@+id/welcome_pager_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        app:piv_strokeWidth="@dimen/content_margin"
+        app:piv_selectedColor="@color/appSecondaryColor"
+        app:piv_unselectedColor="@color/black_transparent"
+        android:layout_margin="@dimen/content_margin"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/navigation_header">
+        android:layout_below="@id/navigation_header"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,8 +53,9 @@
     <RelativeLayout
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/header_height"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/content_margin"
         android:gravity="bottom">
 
         <androidx.cardview.widget.CardView
@@ -71,11 +90,4 @@
                 android:src="@drawable/ic_navigate_next_24dp" />
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
-
-    <ProgressBar
-        android:id="@+id/onboarding_progress"
-        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_alignParentBottom="true" />
 </RelativeLayout>

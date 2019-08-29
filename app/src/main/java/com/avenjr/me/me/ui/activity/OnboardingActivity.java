@@ -3,18 +3,17 @@ package com.avenjr.me.me.ui.activity;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
-import android.widget.ProgressBar;
+import androidx.viewpager.widget.ViewPager;
 
 import com.avenjr.me.me.R;
 import com.avenjr.me.me.db.AppPreferences;
-import com.avenjr.me.me.ui.fragments.EnterEmailFragment;
-import com.avenjr.me.me.ui.fragments.EnterPasswordFragment;
-import com.avenjr.me.me.ui.fragments.VerifyNumberFragment;
+import com.avenjr.me.me.ui.adapters.NavigationViewPager;
+import com.avenjr.me.me.ui.adapters.OnboardingPagerAdapter;
 import com.avenjr.me.me.ui.views.NavigationHeader;
+import com.rd.PageIndicatorView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 import static com.avenjr.me.me.ui.views.NavigationHeader.BACK_HEADER;
 
@@ -23,20 +22,19 @@ public class OnboardingActivity extends BaseActivity {
     @BindView(R.id.navigation_header)
     NavigationHeader navigationHeader;
 
+    @BindView(R.id.welcome_pager)
+    NavigationViewPager welcomePager;
+
+    @BindView(R.id.welcome_pager_indicator)
+    PageIndicatorView welcomePagerIndicator;
+
     @BindView(R.id.reg_back_cv_id)
     CardView navigateBack;
 
     @BindView(R.id.reg_next_cv_id)
     CardView next;
 
-    @BindView(R.id.onboarding_progress)
-    ProgressBar onboardingProgress;
-
-    int muxProgress = 100;
-    int numberOfFragment = 2;
-
     AppPreferences preferences;
-    int backStackCount, currentProgress = muxProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,41 +42,17 @@ public class OnboardingActivity extends BaseActivity {
         setContentView(R.layout.activity_registration);
         ButterKnife.bind(this);
 
-        addFragment(this, EnterEmailFragment.class);
-
         // Shared Preference
         preferences = new AppPreferences(getApplicationContext());
-        onboardingProgress.setMax(100);
-
         navigationHeader.setUp(BACK_HEADER, this, "Registration");
+
+        onboardingPagerSetUp();
     }
 
-    @OnClick(R.id.reg_next_cv_id)
-    public void navigateNextScreen() {
-        backStackCount = this.getSupportFragmentManager().getBackStackEntryCount();
-        switch (backStackCount) {
-            case 1:
-                replaceFragment(this, EnterPasswordFragment.class);
-                break;
-            case 2:
-                replaceFragment(this, VerifyNumberFragment.class);
-                break;
-        }
-
-        currentProgress = (muxProgress/numberOfFragment) * backStackCount;
-        onboardingProgress.setProgress(currentProgress);
-    }
-
-    @OnClick(R.id.reg_back_cv_id)
-    public void navigateBack() {
-        backStackCount = this.getSupportFragmentManager().getBackStackEntryCount();
-        if (backStackCount <= 2) {
-            return;
-        }
-        this.getSupportFragmentManager().popBackStack();
-
-        currentProgress = currentProgress - (muxProgress/numberOfFragment);
-        onboardingProgress.setProgress(currentProgress);
+    private void onboardingPagerSetUp() {
+        welcomePager.setOffscreenPageLimit(3);
+        welcomePager.setAdapter(new OnboardingPagerAdapter(this, getSupportFragmentManager()));
+        welcomePagerIndicator.setViewPager(welcomePager);
     }
 
     @Override
@@ -99,7 +73,8 @@ public class OnboardingActivity extends BaseActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        clearFragmentManager();
+        // Commenting this method as we are not using separate fragment.
+        // clearFragmentManager();
         super.onSaveInstanceState(outState);
     }
 }

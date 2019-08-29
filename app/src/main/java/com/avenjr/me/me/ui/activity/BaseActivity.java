@@ -93,7 +93,7 @@ public class BaseActivity extends AppCompatActivity {
             // Setting icon and color for the text view.
             progressBar = new ProgressBar(layout.getContext());
             progressBar.setBackgroundResource(R.mipmap.ic_launcher_foreground);
-            progressBar.setId(R.id.onboarding_progress);
+            progressBar.setId(R.id.progressBar);
             progressBar.setLayoutParams(new LinearLayout.LayoutParams((int) (60 * dp()), (int) (60 * dp())));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 progressBar.setIndeterminateTintList(ColorStateList.valueOf(Color.WHITE));

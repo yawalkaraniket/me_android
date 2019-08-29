@@ -16,7 +16,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.avenjr.me.me.R;
-import com.avenjr.me.me.ui.activity.NavigationActivity;
 import com.avenjr.me.me.ui.activity.WelcomeActivity;
 import com.avenjr.me.me.ui.adapters.CountryCodeAdapter;
 import com.avenjr.me.me.ui.views.CustomEditText;

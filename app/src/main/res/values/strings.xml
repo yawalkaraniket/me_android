@@ -11,7 +11,7 @@
     // Main Activity
     <string name="register_user">Register</string>
     <string name="sign_in">Sign-In</string>
-    <string name="already_registered_n_sign_in">already registered? \n SIGN IN</string>
+    <string name="already_registered_n_sign_in">already registered?   SIGN IN</string>
 
     // Confirm mobile number fragment
     <string name="confirm_mobile_number">Confirm your mobile number...</string>
@@ -29,7 +29,6 @@
     <string name="logo_view">logo_view</string>
     <string name="loading_generic_message">loading…</string>
     <string name="submit">Submit</string>
-    <string name="cancel">Cancel</string>
 
     // Forgot Password
     <string name="please_enter_email">please enter your email…</string>
@@ -41,17 +40,18 @@
     <string name="login_title">User Login</string>
     <string name="approve_reject_image">approve reject image</string>
     <string name="skip">Skip</string>
-    <string name="are_you_sure">Are your sure?</string>
     <string name="Yes">Yes</string>
     <string name="my_intrest">My Interest</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="select_your_hobbies">Select your hobbies…</string>
-    <string name="back_button">back_button</string>
+    <string name="back_button" translatable="false">back_button</string>
     <string name="next_button">next_button</string>
     <string name="select_hobbies_title">Select your hobbies to create your profile…</string>
     <string name="select_extra_activities_title">Select your extra activities to create your profile…</string>
     <string name="share">Share</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="cancel">Cancel</string>
 
 </resources>

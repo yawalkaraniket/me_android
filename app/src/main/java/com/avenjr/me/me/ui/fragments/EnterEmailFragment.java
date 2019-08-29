@@ -10,7 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.avenjr.me.me.R;
-import com.avenjr.me.me.ui.views.CustomEditText;
+import com.avenjr.me.me.modle.User;
+import com.avenjr.me.me.ui.views.SelectableEditText;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,7 +19,7 @@ import butterknife.ButterKnife;
 public class EnterEmailFragment extends BaseFragment {
 
     @BindView(R.id.reg_email_txt)
-    CustomEditText emailText;
+    SelectableEditText emailText;
 
     @BindView(R.id.approve_reject_image)
     ImageView approveRejectImage;
@@ -31,6 +32,7 @@ public class EnterEmailFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_enter_email, container, false);
         ButterKnife.bind(this, view);
 
+        User user = User.getInstance();
         emailText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -40,6 +42,7 @@ public class EnterEmailFragment extends BaseFragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (Patterns.EMAIL_ADDRESS.matcher(s).matches()) {
+                    user.setId(s.toString());
                     approveRejectImage.setBackground(getResources().getDrawable(R.drawable.approved_green));
                 } else {
                     approveRejectImage.setBackground(getResources().getDrawable(R.drawable.reject_gray));
