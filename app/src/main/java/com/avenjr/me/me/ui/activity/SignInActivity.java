@@ -1,7 +1,10 @@
 package com.avenjr.me.me.ui.activity;
 
+import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.databinding.DataBindingUtil;
+
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +32,7 @@ import com.avenjr.me.me.viewmodel.modlefactory.LoginViewModelFactory;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class SignInActivity extends AppCompatActivity implements LoginResultCallbacks {
 
@@ -44,6 +48,9 @@ public class SignInActivity extends AppCompatActivity implements LoginResultCall
     @BindView(R.id.signIn_et_password)
     CustomEditText password;
 
+    @BindView(R.id.signIn_btn_submit)
+    CardView buttonSubmit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +63,13 @@ public class SignInActivity extends AppCompatActivity implements LoginResultCall
         navigationHeader.setUp(NavigationHeader.BACK_HEADER, this, getString(R.string.login_title));
         setUpForgotIdAndPasswordView();
         addTouchListener();
+    }
+
+    @OnClick(R.id.signIn_btn_submit)
+    public void signIn() {
+        Intent intent = new Intent(this, NavigationActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
     private void addTouchListener() {

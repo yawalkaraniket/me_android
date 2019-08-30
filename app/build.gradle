@@ -73,6 +73,9 @@ dependencies {
 
     // For Pager Indicator
     implementation 'com.romandanylyk:pageindicatorview:1.0.0@aar'
+
+    // For slider
+    implementation 'com.wunderlist:sliding-layer:1.2.5'
 }
 repositories {
     mavenCentral()

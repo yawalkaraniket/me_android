@@ -2,6 +2,7 @@ package com.avenjr.me.me.ui.fragments;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.wifi.WifiManager;
 import android.net.wifi.p2p.WifiP2pDevice;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,8 +25,10 @@ import androidx.fragment.app.Fragment;
 
 import com.avenjr.me.me.R;
 import com.avenjr.me.me.receivers.WifiDirectBroadcastReceiver;
+import com.avenjr.me.me.ui.activity.FriendsActivity;
 import com.avenjr.me.me.ui.animation.ProgressBarAnimation;
 import com.avenjr.me.me.ui.views.CustomTextView;
+import com.avenjr.me.me.ui.views.ProfileSlider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +38,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static com.avenjr.me.me.ui.Utils.UiUtil.dp;
 import static com.avenjr.me.me.ui.Utils.UiUtil.getScreenHeightInDp;
 import static com.avenjr.me.me.ui.Utils.UiUtil.getScreenWidthInPixel;
 
@@ -54,6 +59,13 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.progressBar)
     ProgressBar profileProgressBar;
 
+    @BindView(R.id.profile_parent_layout)
+    RelativeLayout root;
+
+    @BindView(R.id.my_friends_button)
+    TextView myFriendsButton;
+
+    ProfileSlider profileSlider;
     private WifiManager wifiManager;
     private WifiP2pManager wifiP2pManager;
     private WifiP2pManager.Channel channel;
@@ -75,6 +87,12 @@ public class ProfileFragment extends Fragment {
         setProfileImageLayout();
 
         return view;
+    }
+
+    @OnClick(R.id.my_friends_button)
+    public void openFriendsScreen() {
+        Intent intent = new Intent(this.getActivity(), FriendsActivity.class);
+        startActivity(intent);
     }
 
     private void setProfileProgress() {
@@ -152,7 +170,7 @@ public class ProfileFragment extends Fragment {
         int height = getScreenHeightInDp(this.getContext()) / 4;
         params.height = width;
         params.width = width;
-        params.setMargins(0, (int) (height + getResources().getDimension(R.dimen.half_of_the_header_width)), 0, 0);
+        params.setMargins(0, (int) (height + getResources().getDimension(R.dimen.content_margin)), 0, 0);
         params.addRule(RelativeLayout.CENTER_HORIZONTAL);
         return params;
     }
