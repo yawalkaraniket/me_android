@@ -40,7 +40,7 @@ public class EnterPasswordFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_enter_password, container, false);
-        ButterKnife.bind(view);
+        ButterKnife.bind(this, view);
 
         user = User.getInstance();
         validateFields();
@@ -59,10 +59,10 @@ public class EnterPasswordFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() > 6) {
+                if (s.length() >= 6) {
                     password.valid();
                     approveRejectPassImage.setImageDrawable(getResources().getDrawable(R.drawable.approved_green));
-                } else {
+                } else if (s.length() <= 6) {
                     password.rejected();
                     approveRejectPassImage.setImageDrawable(getResources().getDrawable(R.drawable.reject_gray));
                 }

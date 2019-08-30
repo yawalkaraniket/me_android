@@ -7,14 +7,15 @@ public class User {
     private static User user;
 
     public static User getInstance() {
-        if (user!=null) {
+        if (user == null) {
             user = new User();
         }
 
         return user;
     }
 
-    public User() {}
+    public User() {
+    }
 
     public String getId() {
         return id;

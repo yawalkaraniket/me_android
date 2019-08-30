@@ -40,6 +40,7 @@
                 android:background="@drawable/edit_text_unselected"
                 android:hint="@string/enter_email"
                 android:padding="10dp"
+                android:inputType="textEmailAddress"
                 android:shadowColor="@color/white"
                 android:singleLine="true"
                 android:textColorHint="@color/gray" />

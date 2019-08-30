@@ -28,7 +28,7 @@
         app:piv_strokeWidth="@dimen/content_margin"
         app:piv_selectedColor="@color/appSecondaryColor"
         app:piv_unselectedColor="@color/black_transparent"
-        android:layout_margin="@dimen/content_margin"/>
+        android:layout_margin="@dimen/half_of_the_header_width"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -81,6 +81,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             app:cardCornerRadius="@dimen/half_of_the_header_width"
+            android:background="@drawable/signin_register_background"
             app:cardElevation="2dp">
 
             <ImageView

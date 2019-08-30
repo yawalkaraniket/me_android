@@ -89,7 +89,9 @@ public class WelcomeFragment extends Fragment {
         list.add("slkfdjlsdkj");
         list.add("skdfsljf");
         list.add("lksejdflkj");
-        recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 2);
+        gridLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+        recyclerView.setLayoutManager(gridLayoutManager);
         WelcomeScreenAdapter adapter = new WelcomeScreenAdapter(this.getContext(), list);
         recyclerView.setAdapter(adapter);
     }

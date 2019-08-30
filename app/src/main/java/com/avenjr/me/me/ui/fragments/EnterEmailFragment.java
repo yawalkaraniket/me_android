@@ -43,8 +43,10 @@ public class EnterEmailFragment extends BaseFragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (Patterns.EMAIL_ADDRESS.matcher(s).matches()) {
                     user.setId(s.toString());
+                    emailText.valid();
                     approveRejectImage.setBackground(getResources().getDrawable(R.drawable.approved_green));
                 } else {
+                    emailText.rejected();
                     approveRejectImage.setBackground(getResources().getDrawable(R.drawable.reject_gray));
                 }
             }

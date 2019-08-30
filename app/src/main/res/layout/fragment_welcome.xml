@@ -10,32 +10,41 @@
         android:id="@+id/screen_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:textSize="@dimen/content_margin"
         android:gravity="top"
-        android:layout_marginStart="10dp" />
+        android:textSize="@dimen/content_margin" />
 
-    <com.google.android.exoplayer2.ui.PlayerView
-        android:id="@+id/player_view"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/player_view_parent"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="10dp"
-        app:controller_layout_id="@layout/playerconroller"
-        android:layout_below="@+id/screen_title"/>
+        android:layout_height="170dp"
+        android:layout_below="@+id/screen_title"
+        android:layout_margin="@dimen/content_margin"
+        app:cardCornerRadius="@dimen/content_margin">
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/player_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:controller_layout_id="@layout/playerconroller" />
+    </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/interest_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/player_view"/>
+        android:layout_marginLeft="@dimen/content_margin"
+        android:layout_marginRight="@dimen/content_margin"
+        android:layout_below="@id/player_view_parent" />
 
     <ProgressBar
         android:id="@+id/video_progress_bar"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/interest_recycler_view"
         android:layout_below="@id/screen_title"
-        android:layout_above="@+id/interest_recycler_view" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
