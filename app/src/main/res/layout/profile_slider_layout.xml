@@ -1,7 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray">
+    android:background="@color/white">
 
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/slilder_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        android:background="@drawable/curve_only_top_50_appcolor">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/header_height"
+            app:cardCornerRadius="5dp"
+            android:background="@color/white">
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/friends_tab"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        app:tabSelectedTextColor="@color/white"
+        android:visibility="gone"
+        android:background="@drawable/curve_only_top_30_appbackground"
+        app:tabIndicatorColor="@color/appSecondaryColor"/>
+    <androidx.viewpager.widget.ViewPager
+        android:layout_marginTop="@dimen/header_height"
+        android:id="@+id/friends_tab_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/slilder_header"/>
+
+</RelativeLayout>

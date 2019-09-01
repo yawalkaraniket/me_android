@@ -1,22 +1,19 @@
 package com.avenjr.me.me.ui.activity;
 
+import android.os.Build;
+import android.os.Bundle;
+import android.view.View;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
-
-import android.os.Build;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.RelativeLayout;
 
 import com.avenjr.me.me.R;
 import com.avenjr.me.me.ui.views.ProfileSlider;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.avenjr.me.me.ui.Utils.UiUtil.dp;
 
 public class FriendsActivity extends AppCompatActivity {
 
@@ -33,16 +30,17 @@ public class FriendsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initializeProfileSlider();
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void initializeProfileSlider() {
         ConstraintSet set = new ConstraintSet();
-        profileSlider = new ProfileSlider(this);
+        profileSlider = new ProfileSlider(this, getSupportFragmentManager());
         profileSlider.setId(View.generateViewId());
         root.addView(profileSlider);
         set.clone(root);
-        set.connect(profileSlider.getId(), ConstraintSet.BOTTOM, root.getId(), ConstraintSet.BOTTOM, 60);
+        set.connect(profileSlider.getId(), ConstraintSet.BOTTOM, root.getId(), ConstraintSet.BOTTOM, -10);
         set.applyTo(root);
 
 /*
